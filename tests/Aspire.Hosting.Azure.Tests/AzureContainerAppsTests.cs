@@ -1060,7 +1060,7 @@ public class AzureContainerAppsTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public async Task ConfigureCustomDomainsMutatesIngress()
+    public async Task AddCustomDomainMutatesIngress()
     {
         using var builder = TestDistributedApplicationBuilder.Create(DistributedApplicationOperation.Publish);
 
@@ -1072,7 +1072,7 @@ public class AzureContainerAppsTests(ITestOutputHelper output)
             .WithHttpEndpoint(targetPort: 1111)
             .PublishAsAzureContainerApp((module, c) =>
             {
-                c.ConfigureCustomDomain(customDomain, certificateName);
+                c.AddCustomDomain(customDomain, certificateName);
             });
 
         using var app = builder.Build();
@@ -1176,7 +1176,7 @@ public class AzureContainerAppsTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public async Task ConfigureMultipleCustomDomainsMutatesIngress()
+    public async Task AddMultipleCustomDomainsMutatesIngress()
     {
         using var builder = TestDistributedApplicationBuilder.Create(DistributedApplicationOperation.Publish);
 
@@ -1191,8 +1191,8 @@ public class AzureContainerAppsTests(ITestOutputHelper output)
             .WithHttpEndpoint(targetPort: 1111)
             .PublishAsAzureContainerApp((module, c) =>
             {
-                c.ConfigureCustomDomain(customDomain1, certificateName1);
-                c.ConfigureCustomDomain(customDomain2, certificateName2);
+                c.AddCustomDomain(customDomain1, certificateName1);
+                c.AddCustomDomain(customDomain2, certificateName2);
             });
 
         using var app = builder.Build();

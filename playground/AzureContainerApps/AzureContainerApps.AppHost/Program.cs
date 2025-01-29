@@ -39,7 +39,7 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
        .WithEnvironment("VALUE", param)
        .PublishAsAzureContainerApp((module, app) =>
        {
-           app.ConfigureCustomDomain(customDomain, certificateName);
+           app.AddCustomDomain(customDomain, certificateName);
 
            // Scale to 0
            app.Template.Scale.MinReplicas = 0;
