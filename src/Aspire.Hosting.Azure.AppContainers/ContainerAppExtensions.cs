@@ -90,14 +90,12 @@ public static class ContainerAppExtensions
             new NullLiteralExpression()
             );
 
-        app.Configuration.Ingress.CustomDomains = new BicepList<ContainerAppCustomDomain>()
-           {
-                new ContainerAppCustomDomain()
-                {
-                    BindingType = bindingTypeConditional,
-                    Name = customDomainParameter,
-                    CertificateId = certificateOrEmpty
-                }
-           };
+        app.Configuration.Ingress.CustomDomains.Add(
+            new ContainerAppCustomDomain
+            {
+                BindingType = bindingTypeConditional,
+                Name = customDomainParameter,
+                CertificateId = certificateOrEmpty
+            });
     }
 }
